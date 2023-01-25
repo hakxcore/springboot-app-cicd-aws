@@ -25,10 +25,10 @@ pipeline {
 
     stage('docker-push') {
       steps {
-        withDockerRegistry(hakxcore: 'docker-hub-credentials') {
+      	withCredentials([usernamePassword(credentialsId: 'hakxcore', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push hakxcore/myapp:version1.0'
         }
-
         echo 'Image pushed to docker hub'
       }
     }
