@@ -10,7 +10,7 @@ pipeline {
 
     stage('build-war') {
       steps {
-        sh 'sudo mvn project'
+        sh 'mvn project'
       }
     }
 
