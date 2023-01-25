@@ -14,13 +14,22 @@ pipeline {
       }
     }
 
-    stage('docker-build-and-push') {
+    stage('docker-build') {
       steps {
         sh 'docker build -t myapp .'
         echo 'Docker build sucessfull'
         sh 'docker tag myapp hakxcore/myapp:version1.0'
         echo 'Image tagged with myapp:version1.0'
         sh 'docker push hakxcore/myapp:version1.0'
+        echo 'Image pushed to docker hub'
+      }
+    }
+    
+    stage('docker-push') {
+      steps {
+        withDockerRegistry([ hakxcore: "docker-hub-credentials", url: "" ]) {
+        sh 'docker push hakxcore/myapp:version1.0'
+        }
         echo 'Image pushed to docker hub'
       }
     }
