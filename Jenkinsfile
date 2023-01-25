@@ -28,6 +28,7 @@ pipeline {
         withDockerRegistry(hakxcore: 'docker-hub-credentials') {
           sh 'docker push hakxcore/myapp:version1.0'
         }
+
         echo 'Image pushed to docker hub'
       }
     }
