@@ -20,8 +20,6 @@ pipeline {
         echo 'Docker build sucessfull'
         sh 'docker tag myapp hakxcore/myapp:version1.0'
         echo 'Image tagged with myapp:version1.0'
-        sh 'docker push hakxcore/myapp:version1.0'
-        echo 'Image pushed to docker hub'
       }
     }
 
@@ -30,7 +28,6 @@ pipeline {
         withDockerRegistry(hakxcore: 'docker-hub-credentials') {
           sh 'docker push hakxcore/myapp:version1.0'
         }
-
         echo 'Image pushed to docker hub'
       }
     }
