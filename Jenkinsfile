@@ -10,7 +10,7 @@ pipeline {
 
     stage('build-war') {
       steps {
-        sh 'mvn -e project'
+        sh 'mvn clean install'
       }
     }
 
