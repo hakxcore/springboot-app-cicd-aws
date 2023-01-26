@@ -29,7 +29,6 @@ pipeline {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push hakxcore/myapp:version1.0'
         }
-
         echo 'Image pushed to docker hub'
       }
     }
